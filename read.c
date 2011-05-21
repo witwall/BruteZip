@@ -34,7 +34,6 @@ int main(int argc, char *argv[])
 	uint32_t sig;
 	int first = 1;
 	unsigned long long lastloc, startloc, i, len;
-	unsigned long long startloc;
 	char filename[UINT16_MAX];
 	char buffer[0x10000];
 	char zbuffer[0x10000];
