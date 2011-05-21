@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
 	unsigned long lastloc;
 	unsigned long startloc;
 	char filename[UINT16_MAX];
-	char buffer[0x4000];
-	char zbuffer[0x4000];
+	char buffer[0x10000];
+	char zbuffer[0x10000];
 	int i, len, ret;
 	z_stream strm;
 	while (!feof(fh)) {
