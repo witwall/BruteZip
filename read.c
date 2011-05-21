@@ -25,6 +25,15 @@ typedef struct {
 
 int main(int argc, char *argv[])
 {
+	union {
+		long int l;
+		char c[sizeof (long int)];
+	} u;
+	u.l = 1;
+	if (u.c[sizeof(long int) - 1] == 1) {
+		printf("This program only runs on little endian archs, because I'm lazy. Sorry.\n");
+		return -2;
+	}
 	if (argc != 2)
 		return -1;
 	FILE *fh = fopen(argv[1], "rb");
