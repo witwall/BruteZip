@@ -33,12 +33,12 @@ int main(int argc, char *argv[])
 	dd des;
 	uint32_t sig;
 	int first = 1;
-	unsigned long lastloc;
-	unsigned long startloc;
+	unsigned long long lastloc, startloc, i, len;
+	unsigned long long startloc;
 	char filename[UINT16_MAX];
 	char buffer[0x10000];
 	char zbuffer[0x10000];
-	int i, len, ret;
+	int ret;
 	z_stream strm;
 	while (!feof(fh)) {
 		if (!first) {
@@ -122,7 +122,6 @@ int main(int argc, char *argv[])
 				} else
 					fwrite(buffer, 1, len, ofh);
 			}
-			printf("%d %d\n", ftell(fh), startloc + header.compressedsize);
 			if (header.compression == 8)
 				inflateEnd(&strm);
 			fclose(ofh);
