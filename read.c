@@ -113,7 +113,6 @@ int main(int argc, char *argv[])
 						strm.next_out = zbuffer;
 						if ((ret = inflate(&strm, Z_NO_FLUSH)) != Z_OK && ret != Z_STREAM_END && ret != Z_BUF_ERROR) {
 							printf("Inflation failed, error %i.\n", ret);
-							fseek(fh, startloc + header.compressedsize, SEEK_SET);
 							break;
 						}
 						len = sizeof(zbuffer) - strm.avail_out;
@@ -121,6 +120,7 @@ int main(int argc, char *argv[])
 					} while (strm.avail_out == 0);
 				} else
 					fwrite(buffer, 1, len, ofh);
+				fseek(fh, startloc + header.compressedsize, SEEK_SET);
 			}
 			if (header.compression == 8)
 				inflateEnd(&strm);
