@@ -92,7 +92,11 @@ int main(int argc, char *argv[])
 			for (i = 0; i < strlen(filename); ++i) {
 				if (filename[i] == '/') {
 					filename[i] = 0;
-					mkdir(filename, S_IRWXU);
+					#ifdef _WIN32
+						mkdir(filename);
+					#else
+						mkdir(filename, S_IRWXU);
+					#endif
 					filename[i] = '/';
 				}
 			}
